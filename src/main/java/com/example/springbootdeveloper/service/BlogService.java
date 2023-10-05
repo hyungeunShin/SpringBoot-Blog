@@ -1,5 +1,6 @@
 package com.example.springbootdeveloper.service;
 
+import com.example.springbootdeveloper.config.error.exception.ArticleNotFoundException;
 import com.example.springbootdeveloper.domain.Article;
 import com.example.springbootdeveloper.dto.AddArticleRequest;
 import com.example.springbootdeveloper.dto.UpdateArticleRequest;
@@ -26,7 +27,7 @@ public class BlogService {
 
     public Article findById(long id) {
         return blogRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("not found : " + id));
+                .orElseThrow(ArticleNotFoundException::new);
     }
 
     public void delete(long id) {
